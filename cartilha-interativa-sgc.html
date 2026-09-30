@@ -195,19 +195,19 @@ details.risk .body{padding:0 16px 14px 52px;color:var(--muted)}
 details.risk .body b{color:var(--ink)}
 
 /* org chart */
-.org{display:flex;flex-direction:column;align-items:center}
-.lvl{display:flex;justify-content:center;gap:12px;width:100%;position:relative}
-.node{border:0;background:var(--blue);color:#fff;border-radius:16px;padding:10px 10px 8px;min-width:0;flex:1;max-width:190px;text-align:center;transition:transform .15s}
+.org{display:flex;flex-direction:column;align-items:center;width:100%;max-width:900px;margin:0 auto}
+.lvl{display:flex;justify-content:center;align-items:stretch;gap:12px;width:100%;max-width:760px;position:relative}
+.node{border:0;background:var(--blue);color:#fff;border-radius:16px;padding:10px 10px 8px;min-width:0;flex:1 1 0;max-width:190px;text-align:center;transition:transform .15s}
 .node .role{font-family:Fredoka,sans-serif;font-weight:600;font-size:15px;display:block}
 .node .who{display:block;background:#fff;color:var(--navy);border-radius:10px;font-weight:800;font-size:13.5px;padding:3px 6px;margin-top:6px}
 .node.top{background:var(--navy);outline:2px solid var(--sky);outline-offset:-2px}
 .node.on{background:var(--amber)}
 .node:hover{transform:translateY(-2px)}
-.stem{width:2px;height:18px;background:var(--muted)}
+.stem{display:block;width:2px;height:18px;background:var(--muted)}
 .bar{height:2px;background:var(--muted)}
-.l2{max-width:420px}
-.l3{flex-wrap:wrap}
-.l3 .node{flex:1 1 calc(25% - 12px);max-width:none}
+.l2{max-width:440px}
+.l3{flex-wrap:wrap;max-width:780px}
+.l3 .node{flex:1 1 calc(25% - 12px);max-width:180px}
 @media(max-width:560px){.l3 .node{flex:1 1 calc(50% - 12px)}}
 .role-info{margin-top:18px;min-height:74px}
 .role-info h3{font-size:20px;font-weight:600;color:var(--blue)}
