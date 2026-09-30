@@ -2,7 +2,8 @@ const http = require('http');
 const fs = require('fs');
 const path = require('path');
 
-const port = Number(process.env.PORT) || 3000;
+const port = Number(process.env.PORT) || 8080;
+const host = process.env.HOST || '0.0.0.0';
 const rootDir = __dirname;
 const defaultFile = 'cartilha-interativa-sgc.html';
 
@@ -22,7 +23,15 @@ const mimeTypes = {
 };
 
 const server = http.createServer((req, res) => {
-  const requestPath = req.url === '/' ? `/${defaultFile}` : req.url;
+  const url = new URL(req.url, `http://${req.headers.host || 'localhost'}`);
+
+  if (url.pathname === '/health') {
+    res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8' });
+    res.end(JSON.stringify({ ok: true, service: 'cartilha-interativa' }));
+    return;
+  }
+
+  const requestPath = url.pathname === '/' ? `/${defaultFile}` : url.pathname;
   const safePath = path.normalize(requestPath).replace(/^\/+/, '');
   const filePath = path.join(rootDir, safePath);
 
@@ -47,6 +56,6 @@ const server = http.createServer((req, res) => {
   });
 });
 
-server.listen(port, () => {
-  console.log(`Servidor rodando em http://localhost:${port}`);
+server.listen(port, host, () => {
+  console.log(`Servidor rodando em http://${host}:${port}`);
 });
